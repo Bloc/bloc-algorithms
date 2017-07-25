@@ -1,0 +1,1 @@
+1. Using proper pseudo-code, describe three or more primitive algorithms used in your day-to-day life. Write your answers in a file called intro_algorithms_answers.txt.
