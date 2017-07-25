@@ -1,1 +1,64 @@
 1. Using proper pseudo-code, describe three or more primitive algorithms used in your day-to-day life. Write your answers in a file called intro_algorithms_answers.txt.
+
+  a) Calculate a tip
+    Calculate total amount owed, to include tax
+    Move decimal one to the left
+    Double the amount
+    Round up to nearest dollar
+
+  b) Feed the dogs
+    GET Scout's pill
+    PUT pill in Scout (she'll just eat it)
+    GET bowls from on top of fridge
+    MOVE bowls to pantry
+    OPEN pantry
+    OPEN rectangular container
+    GET scoop
+    GET 3/4 scoop of food from rectangular container
+    PUT food in smallest bowl
+    OPEN second, square shaped container
+    GET two scoops of food from square shaped container
+    PUT in largest bowl
+    CLOSE square shaped container
+    PUT scoop back in rectangular container
+    CLOSE rectangular container
+    MOVE both bowls to living room
+    PUT small bowl on couch
+    PUT large bowl on ground
+    Sleep 3 minutes
+    GET both bowls
+    PUT both bowls on top of the fridge
+
+  c) Get to work
+    Leave house
+    Lock door
+    Walk north on Loomis Ave SE
+    Turn left on Memorial
+    WHILE traffic on Memorial OR not at intersection with Cherokee Drive
+      Walk westward
+    ENDWHILE
+    Cross to north side of Memorial
+    Enter Oakland Cemetery gate
+    Turn left on MLK Drive
+    Exit cemetery at gate on far western gate
+    Cut northwest through parking lot towards Grant St
+    Turn right on Grant St
+    Travel north to MLK Jr MARTA station
+    Take steps up to entrance
+    Scan card at gate
+    IF elevator present
+      take elevator to platform level
+    ELSE
+      take escalator to platform level
+    ENDIF
+    Take any westbound train to Five Points station
+    Take escalator to lower level, following Northbound signs
+    WHILE next train is not the Gold Line train
+      wait
+    ENDWHILE
+    Board the Gold line train
+    Exit train at Lennox stop
+    Take escalator on north side of platform
+    Take elevated crosswalk to Atlanta One Plaza
+    Take elevator to 23rd floor
+    Enter through any door
