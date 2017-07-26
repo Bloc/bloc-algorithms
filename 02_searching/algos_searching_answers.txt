@@ -31,7 +31,7 @@
     Iterative:   0.000000   0.000000   0.000000 (  0.000004)
     Recursion:   0.000000   0.000000   0.000000 (  0.001057)
 
-  In our recursive solution, we are recalculating the n-1 and n-2 fib numbers for every incrementation of n, whereas in the iterative solution we are tracking the result from the previous iteration. If we wanted to do this recursively and efficiently, we'd have to keep track of the results. Here's how I would have implemented this recursively in Elixir (which is really the preferred way in a functional language):
+  In our recursive solution, we are recalculating the n-1 and n-2 fib numbers for every incrementation of n, whereas in the iterative solution we are tracking the result from the previous iteration. If we wanted to do this recursively and efficiently, we would want to keep track of previous results. Here's how I would have implemented this recursively in Elixir (which is really the preferred way in a functional language, since simulating the mutation of data like loop variables can be expensive):
 
     def fib(0), do: 0
     def fib(1), do: 1
@@ -43,7 +43,7 @@
         fib(fib_1, next, n-1)
     end
 
-  So in Ruby, I would have done this instead:
+  So in Ruby, I would implement something similar, like this:
 
     def fib(n)
       return 0 if n == 0
@@ -64,20 +64,20 @@
     Recursion:      0.000000   0.000000   0.000000 (  0.001057)
     New Recursion:  0.000000   0.000000   0.000000 (  0.000004)
 
-  Sure enough, it does. But since this is just keeping track of the last value it really is just a recursive way to do pretty much exactly what we're doing with iteration in Ruby. And since Ruby doesn't optimize for tail recursion, I imagine iterative would get better with larger numbers, like say fib(30):
+  Sure enough, it does. But Ruby isn't really optimized for tail end recursion, so what that means is we're creating a new stack with every iteration. In addition to size concerns and stack limits, that all takes additional time so we're likely to see that slow down our New Recursion algorithm with larger numbers, like say fib(30):
 
                       user     system      total        real
     Iterative:      0.000000   0.000000   0.000000 (  0.000004)
     Recursion:      0.130000   0.000000   0.130000 (  0.130868)
     New Recursion:  0.000000   0.000000   0.000000 (  0.000006)
 
-  And we see the iterative approach in Ruby start to pull away with blazing speed.
+  And we see the iterative approach in Ruby start to pull away with blazing speed. Here'
 
 5. Answer more questions:
   a. Given an unsorted collection of a million items, which algorithm would you choose between linear search and binary search? Would you use an iterative or recursive solution? Explain your reasoning.
 
-    I would use linear search. Since this is unsorted, it makes no sense to test a midpoint as we are unsure if values to the left are less and values to the right are more. As a result, binary would likely return an incorrect result. In Ruby, I would choose iterative, since tail recursion optimization doesn't exist. In a functional language, like Elixir or Lisp, I would choose either, since the compiler will optimize tail recursion.
+    I would use linear search. Since this is unsorted, it makes no sense to test a midpoint as we are unsure if values to the left are less and values to the right are more. As a result, binary would likely return an incorrect result. In Ruby, I would choose iterative, since tail recursion optimization doesn't exist. In a functional language, like Elixir or Lisp, I would choose recursion.
 
   b. Given a sorted collection of a million items, which algorithm would you choose between linear search and binary search? Would you use an iterative or recursive solution? Explain your reasoning.
 
-    Binary search: since it's sorted, we know that items to the left of the midpoint are less and to the right are more. As a result, we can split the search in half every time, giving us O(log n) search time (vs O(n) for linear). And same choices for implementation for the same reasons: iterative for Ruby and either for most functional languages.
+    Binary search: since it's sorted, we know that items to the left of the midpoint are less and to the right are more. As a result, we can split the search in half every time, giving us O(log n) search time (vs O(n) for linear). And same choices for implementation for the same reasons: iterative for Ruby and recursion for most functional languages.
