@@ -24,3 +24,60 @@
   - fib(12)
     - 11: 34 + 55 = 89
     - 12: 55 + 89 = 144
+
+4. Compare the time it takes to run fib(20) between the iterative solution from the previous checkpoint and recursive solutions.
+
+                  user     system      total        real
+    Iterative:   0.000000   0.000000   0.000000 (  0.000004)
+    Recursion:   0.000000   0.000000   0.000000 (  0.001057)
+
+  In our recursive solution, we are recalculating the n-1 and n-2 fib numbers for every incrementation of n, whereas in the iterative solution we are tracking the result from the previous iteration. If we wanted to do this recursively and efficiently, we'd have to keep track of the results. Here's how I would have implemented this recursively in Elixir (which is really the preferred way in a functional language):
+
+    def fib(0), do: 0
+    def fib(1), do: 1
+    def fib(n), do: fib(0, 1, n-2)
+
+    def fib(_, fib_1, -1), do: fib_1
+    def fib(fib_0, fib_1, n) do
+        next = fib_1 + fib_0
+        fib(fib_1, next, n-1)
+    end
+
+  So in Ruby, I would have done this instead:
+
+    def fib(n)
+      return 0 if n == 0
+      return 1 if n == 1
+      get_fib(0, 1, n)
+    end
+
+    def get_fib(fib_0, fib_1, n)
+      return fib_1 if n < 0
+      next_num = fib_1 + fib_0
+      get_fib(fib_1, next_num, n - 1)
+    end
+
+  I imagine this would benchmark somewhat close to what we'd see with the iterative approach in Ruby. Let's take it for a spin:
+
+                      user     system      total        real
+    Iterative:      0.000000   0.000000   0.000000 (  0.000004)
+    Recursion:      0.000000   0.000000   0.000000 (  0.001057)
+    New Recursion:  0.000000   0.000000   0.000000 (  0.000004)
+
+  Sure enough, it does. But since this is just keeping track of the last value it really is just a recursive way to do pretty much exactly what we're doing with iteration in Ruby. And since Ruby doesn't optimize for tail recursion, I imagine iterative would get better with larger numbers, like say fib(30):
+
+                      user     system      total        real
+    Iterative:      0.000000   0.000000   0.000000 (  0.000004)
+    Recursion:      0.130000   0.000000   0.130000 (  0.130868)
+    New Recursion:  0.000000   0.000000   0.000000 (  0.000006)
+
+  And we see the iterative approach in Ruby start to pull away with blazing speed.
+
+5. Answer more questions:
+  a. Given an unsorted collection of a million items, which algorithm would you choose between linear search and binary search? Would you use an iterative or recursive solution? Explain your reasoning.
+
+    I would use linear search. Since this is unsorted, it makes no sense to test a midpoint as we are unsure if values to the left are less and values to the right are more. As a result, binary would likely return an incorrect result. In Ruby, I would choose iterative, since tail recursion optimization doesn't exist. In a functional language, like Elixir or Lisp, I would choose either, since the compiler will optimize tail recursion.
+
+  b. Given a sorted collection of a million items, which algorithm would you choose between linear search and binary search? Would you use an iterative or recursive solution? Explain your reasoning.
+
+    Binary search: since it's sorted, we know that items to the left of the midpoint are less and to the right are more. As a result, we can split the search in half every time, giving us O(log n) search time (vs O(n) for linear). And same choices for implementation for the same reasons: iterative for Ruby and either for most functional languages.
