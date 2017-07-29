@@ -1,7 +1,9 @@
 def merge_sort(collection)
   if collection.length <= 1
+    # Collection is returned if the size is less than or equal to one. A collection of one item is always sorted.
     collection
   else
+    # Splits in half and recursively breaks everything down to n collections (i.e. [element])
     mid = (collection.length / 2).floor
     left = merge_sort(collection[0..mid - 1])
     right = merge_sort(collection[mid..collection.length])
