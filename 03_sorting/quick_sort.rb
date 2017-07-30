@@ -1,30 +1,26 @@
-def quick_sort(collection)
-  sort(collection, 0, collection.length - 1)
-  collection
-end
-
-def sort(collection, head, last)
+def quick_sort(collection, head = 0, last = collection.length - 1)
   sorted = partition(collection, head, last)
-  sort(collection, head, sorted - 1) if sorted > head
-  sort(collection, sorted + 1, last) if sorted < last
+  quick_sort(collection, head, sorted - 1) if sorted > head
+  quick_sort(collection, sorted + 1, last) if sorted < last
+  collection
 end
 
 def partition(collection, head, subject)
   index = head
-  higher_head = head
+  high_head_index = head
 
   while index < subject
     if collection[index] <= collection[subject]
-      swap(collection, index, higher_head)
+      swap(collection, index, high_head_index)
       index += 1
-      higher_head += 1
+      high_head_index += 1
     else
       index += 1
     end
   end
 
-  swap(collection, subject, higher_head)
-  return higher_head
+  swap(collection, subject, high_head_index)
+  return high_head_index
 end
 
 def swap(collection, x, y)
