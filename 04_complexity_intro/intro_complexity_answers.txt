@@ -2,11 +2,10 @@
   - Corvette:Spark::O(1):O(2n)
 
 2. In plain English, what is the best case scenario for binary search?
-  - The root node is the target
+  - The first index is the target
 
 3. In plain English, what is the worst-case scenario for binary search?
-  - As you descend each level of the tree, you eliminate half of the possibilities, so it's log n.
-  - Note: if this was a binary tree (not an ordered BST), then it could be O(n).
+  - With each iteration, you eliminate half of the possibilities, so it's log n.
 
 4. In plain English, what is the bounded-case scenario for binary search?
   - It would be the average of the worst case scenario and best case scenario, which would still work out to the same thing as the worst scenario since best case is 1.
