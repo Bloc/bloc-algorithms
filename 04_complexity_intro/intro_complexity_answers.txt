@@ -14,7 +14,7 @@
   - https://docs.google.com/spreadsheets/d/1ucZXjjOS8DTQwA1DE5Ibpu4GTObEs5M9PvYPENIrekw/edit?usp=sharing
 
 6. What's the asymptotic limit as n approaches infinity for the function defined by the values above?
-  - infinity
+  - The limit does not exist
 
 7. What is the Big-O of an algorithm that has the data points above?
   - f(2^n)
