@@ -1,0 +1,79 @@
+1. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+  def goodbye_world(n)
+    puts "Goodbye World! #{n}"
+  end
+
+  - O(1) - Linear. The method executes in constant time, regardless of the value passed to it. goodbye_world(100) will merely print "Goodbye World! 100", just as goodbye_world(1) will print "Goodbye World! 1"
+
+2. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+  def find_largest(collection)
+    largest = collection[0]
+    collection.length.times do |i|
+     if collection[i] >= largest
+       largest = collection[i]
+     end
+    end
+    largest
+  end
+
+  - O(n) - Linear. This method's best and worst cases are the same, as the `collection.length.times` loop will iterate n number of times every time.
+
+3. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+  def find_largest(collection)
+    largest = collection[0][0]
+    collection.length.times do |i|
+     subcollection = collection[i]
+     subcollection.length.times do |i|
+       if subcollection[i] >= largest
+         largest = subcollection[i]
+       end
+     end
+    end
+    largest
+  end
+
+  - O(n) - Linear. This looks like quadratic time on the surface, but it's important to remember that we refer to the input as n. In this case, n is a two dimensional array. One way to iterate over every element of a two dimensional array, is by using a nested loop like this method does. Generally, a nested loop would suggest that the running time is O(n^2), but since the input is two dimensional, we're still really iterating only over n. For instance, a collection that is a 4x4 2D array has a size (n) of 16. When that array is passed to find_largest, the outside loop, `collection.length.times`, will execute four times. Within those four executions, the `subcollection.length.times` loop will execute a total of 16 times, which is equal to n in this case.
+
+4. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+  def numbers(n)
+    if (n == 0)
+      return 0
+    elsif (n == 1)
+      return 1
+    else
+      return numbers(n-1) + numbers(n-2)
+    end
+  end
+
+  - O(2^n) - Exponential. While constant if n is equal to 0 or 1, anything larger than that will trigger recursive calls. Those recursive calls will add additional recursive calls until their n = 1. As a result, the size of the recursion tree will grow at double the rate for each level, since our method is called twice (i.e. f(n) = f(n-1) + f(n-2) = f(n-2) + f(n-3) + f(n-3) + f(n-4)...). Since the height of that tree is n, and at each level we are doubling the width of our tree, we can simply say 2^n as the worst case scenario.
+
+5. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+  def iterative(n)
+    num1 = 0
+    num2 = 1
+
+    i = 0
+    while i < n-1
+      tmp = num1 + num2
+      num1 = num2
+      num2 = tmp
+      i+=1
+    end
+
+    num2
+  end
+
+  - O(n) - Linear. As long as n > 2, the while loop will iterate n - 1 times. As n approaches infinity, the number of operations also approaches infinity along a linear path.
+
+6. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
+
+  <sort.rb - pretty long to post here>
+
+  - O(NoMethodError). This is a constant, because it calls a `quick_sort` method that doesn't exist. (Sorry, couldn't resist).
+  - O(n^2). While quicksort most often will run at around O(n log n), in a worst case scenario it will operate at n^2. If the array is already sorted, then the pivot will only reduce by 1 each time. As a result, when you call recursion you're only reducing the problem by one and only using one recursive call to go over the n-1 elements. That means you are going through n elements, ~n number of times. Contrast that with a best case scenario, where the pivot is towards the middle. Now we make two recursive calls to two n/2 sized arrays, with each yielding a result. That would be O(n log n). In both examples, each element of the array is accessed twice. But in the sorted array example, you'll only get two sorted results whereas you get three with the other.
+
+  There has to be a better way to explain that, but I think I actually understand it now.
