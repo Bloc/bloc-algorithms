@@ -18,9 +18,10 @@ end
 def sort_max_heap(collection, index)
   parent_index = parent(index)
 
-  if parent_index && collection[parent(index)] < collection[index]
+  while parent_index && collection[parent(index)] < collection[index]
     swap(collection, index, parent_index)
-    sort_max_heap(collection, parent_index)
+    index = parent_index
+    parent_index = parent(index)
   end
 end
 
