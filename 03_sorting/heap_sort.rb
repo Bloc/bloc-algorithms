@@ -39,9 +39,15 @@ def sift_down(collection, index, size)
   highest = left
   highest = right if left && right && collection[left] < collection[right]
 
-  if highest && collection[highest] > collection[index]
+  while highest && collection[highest] > collection[index]
     swap(collection, highest, index)
-    sift_down(collection, highest, size)
+    index = highest
+
+    left = left(collection, index, size)
+    right = right(collection, index, size)
+
+    highest = left
+    highest = right if left && right && collection[left] < collection[right]
   end
 end
 
