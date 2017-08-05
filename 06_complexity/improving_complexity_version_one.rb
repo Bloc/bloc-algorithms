@@ -2,24 +2,24 @@
 def improving_complexity_version_one(*arrays)
   combined_array = []
   arrays.each do |array|
-    array.each do |value|
-      combined_array << value
-    end
+    combined_array.concat(array)
   end
 
   sorted_array = [combined_array.delete_at(combined_array.length-1)]
 
   for val in combined_array
+    i = 0
     last_index = sorted_array.length - 1
-
-    for i in (0..last_index)
+    while i <= last_index
       if val <= sorted_array[i]
         sorted_array.insert(i, val)
         break
+      elsif i == last_index
+        sorted_array << val
+        break
       end
+      i+=1
     end
-
-    sorted_array << val if sorted_array.length - 1 == last_index
   end
 
   # Return the sorted array
