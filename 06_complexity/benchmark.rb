@@ -15,8 +15,8 @@ array_2 = array_2.shuffle
 
 print "            "
 Benchmark.bm do |x|
-  x.report("Base case:     ") { 50.times { poorly_written_ruby(array_1, array_2) } }
-  x.report("Version one:   ") { 50.times { improving_complexity_version_one(array_1, array_2) } }
-  x.report("Version two:   ") { 50.times { improving_complexity_version_two(array_1, array_2) } }
-  x.report("Version three: ") { 50.times { improving_complexity_version_three(array_1, array_2) } }
+  x.report("Base case:     ") { 100.times { poorly_written_ruby(array_1, array_2) } }
+  x.report("Version one:   ") { 100.times { improving_complexity_version_one(array_1, array_2) } }
+  x.report("Version two:   ") { 100.times { improving_complexity_version_two(array_1, array_2) } }
+  x.report("Version three: ") { 100.times { improving_complexity_version_three(array_1, array_2) } }
 end
