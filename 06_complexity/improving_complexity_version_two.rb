@@ -1,5 +1,5 @@
 # This method takes n arrays as input and combine them in sorted ascending  order
-def improving_complexity_version_one(*arrays)
+def improving_complexity_version_two(*arrays)
   combined_array = []
   arrays.each do |array|
     array.each do |value|
