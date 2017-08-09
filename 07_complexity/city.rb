@@ -23,6 +23,7 @@ class City
         low = mid + 1
       else
         @neighbors.insert(mid, {city: city, distance: distance})
+        break
       end
     end
 
