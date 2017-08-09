@@ -71,7 +71,47 @@ describe "#nearest_neighbor" do
     create_route(atlanta, savannah, 248)
   end
 
-  it "stores nearest neighbor in" do
+  it "returns nearest neighbor and marks visited" do
+    expect(atlanta.visited).to be false
+    neighbor = nearest_neighbor(savannah)
+    expect(neighbor).to eq atlanta
+    expect(atlanta.visited).to be true
 
+    neighbor = nearest_neighbor(savannah)
+    expect(neighbor).to eq charlotte
+    expect(charlotte.visited).to be true
+  end
+
+  it "returns nil if we run out of neighbors" do
+    nearest_neighbor(savannah)
+    nearest_neighbor(savannah)
+    expect(nearest_neighbor(savannah)).to be_nil
+  end
+end
+
+describe "#find_path" do
+  let(:charlotte) { City.new("Charlotte") }
+  let(:atlanta) { City.new("Atlanta") }
+  let(:savannah) { City.new("Savannah") }
+  let(:columbia) { City.new("Columbia") }
+
+  before do
+    create_route(charlotte, atlanta, 244)
+    create_route(charlotte, savannah, 252)
+    create_route(charlotte, columbia, 93)
+
+    create_route(atlanta, savannah, 248)
+    create_route(atlanta, columbia, 214)
+
+    create_route(savannah, columbia, 157)
+  end
+
+  it "text" do
+    expect(nearest_neighbor(columbia)).to eq charlotte
+    expect(nearest_neighbor(columbia)).to eq savannah
+  end
+
+  it "returns correct path" do
+    expect(find_path(charlotte)).to eq ["Charlotte", "Columbia", "Savannah", "Atlanta"]
   end
 end
