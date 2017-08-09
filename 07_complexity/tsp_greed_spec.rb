@@ -114,4 +114,19 @@ describe "#find_path" do
   it "returns correct path" do
     expect(find_path(charlotte)).to eq ["Charlotte", "Columbia", "Savannah", "Atlanta"]
   end
+
+  it "handles a large amount of data" do
+    cities = []
+    for i in (0..500) do
+      cities.push(City.new("City-#{i}"))
+    end
+
+    for i in (0..500) do
+      for j in (0..500) do
+        create_route(cities[i], cities[j], rand(20..200)) if j != i
+      end
+    end
+
+    expect(find_path(cities[0]).length).to eq 501
+  end
 end

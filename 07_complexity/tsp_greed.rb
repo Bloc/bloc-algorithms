@@ -5,7 +5,6 @@ def create_route(city1, city2, distance)
   city2.add_neighbor(city1, distance)
 end
 
-# Non-destructive version.
 def nearest_neighbor(city)
   for neighbor in city.neighbors
     if !neighbor[:city].visited
