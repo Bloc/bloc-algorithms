@@ -1,12 +1,15 @@
 def bubble_sort(collection)
   n = collection.length
-  # #1
+
+  # Start begin-end-until loop. Iterates until we no longer need to swap.
   begin
     swapped = false
 
-    # #2
+    # Iterate over the length of the collection each pass.
     (n - 1).times do |i|
-      # #3
+      # If the first element is greater than the second element, swap and set
+      # swapped to true. If this condition is never met, swapped will remain
+      # set to false and the begin-end-until loop will exit.
       if collection[i] > collection[i + 1]
         tmp = collection[i]
         collection[i] = collection[i + 1]

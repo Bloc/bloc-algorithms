@@ -16,11 +16,11 @@ describe "#heap_sort" do
   end
 end
 
-describe "#sort_max_heap" do
+describe "#heapify" do
   it "turns a collection into a max heap" do
     collection = [1, 5, 3, 2, 4]
     for i in (1..(collection.length - 1))
-      sort_max_heap(collection, i)
+      heapify(collection, i)
     end
     expect(collection).to eq [5, 4, 3, 1, 2]
   end
