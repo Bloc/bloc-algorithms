@@ -3,7 +3,7 @@
     puts "Goodbye World! #{n}"
   end
 
-  - O(1) - Linear. The method executes in constant time, regardless of the value passed to it. goodbye_world(100) will merely print "Goodbye World! 100", just as goodbye_world(1) will print "Goodbye World! 1"
+  - O(1) - Constant. The method executes in constant time, regardless of the value passed to it. goodbye_world(100) will merely print "Goodbye World! 100", just as goodbye_world(1) will print "Goodbye World! 1"
 
 2. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
 
