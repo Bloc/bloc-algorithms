@@ -1,10 +1,6 @@
 # Algorithms
 
-A guide to my exploration of algorithms and efficiency.
-
-## 01 - Introduction
-
-Simply created a fibonacci sequence iteratively.
+A guide to my exploration of algorithms and efficiency. Only relevant notes included.
 
 ## 02 - Searching
 
